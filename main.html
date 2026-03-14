@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja" data-theme="light">  <!-- 初期はlight -->
 <head>
-  <meta charset="UTF-8">
+ 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">　　　　<!-- 別の端末でも見やすくする -->
-  <title>Potofolio — べいすど</title>
+  <title>べいすど | Potofolio</title>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root [data-theme="light"] {
       --bg: #f5f2ed;
       --ink: #1a1714;
-      --accent: #c8502a;
       --muted: #8a847c;
       --line: #d6d0c8;
       --card: #edeae3;
     }
 
+    :root [data-theme="dark"] {
+      --bg: #000000;
+      --ink: #ffffff;
+      --muted: #8a847c;
+      --line: #d6d0c8;
+      --card: #edeae3;
+    }
+
+    /*ほぼほぼ必須のやつ*/
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
+
+
 
     /* 固定ヘッダーにする場合（sticky or fixed） */
 .fixed-header {
@@ -81,6 +92,12 @@ section {
 <body>
 
 
+<div class="toggle-wrap">
+  <button class="toggle-btn" onclick="toggleTheme()">
+    <span class="toggle-icon" id="toggleIcon">☀️</span>
+    <span id="toggleLabel">light</span>
+  </button>
+</div>
 
 
 
@@ -105,6 +122,18 @@ section {
     <p>© 2026 based.</p>
     <p>@copyright</p>
   </footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('toggleIcon').textContent = isDark ? '🌙' : '☀️';
+    document.getElementById('toggleLabel').textContent = isDark ? 'dark' : 'light';
+  }
+</script>
+
+
 
   </body>
 
